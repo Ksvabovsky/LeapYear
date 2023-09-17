@@ -24,12 +24,12 @@ namespace LeapYear.Pages.Person
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Person == null)
+            if (id == null || _context.LeapYearPerson == null)
             {
                 return NotFound();
             }
 
-            var leapyearperson = await _context.Person.FirstOrDefaultAsync(m => m.Id == id);
+            var leapyearperson = await _context.LeapYearPerson.FirstOrDefaultAsync(m => m.Id == id);
 
             if (leapyearperson == null)
             {
@@ -44,16 +44,16 @@ namespace LeapYear.Pages.Person
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Person == null)
+            if (id == null || _context.LeapYearPerson == null)
             {
                 return NotFound();
             }
-            var leapyearperson = await _context.Person.FindAsync(id);
+            var leapyearperson = await _context.LeapYearPerson.FindAsync(id);
 
             if (leapyearperson != null)
             {
                 LeapYearPerson = leapyearperson;
-                _context.Person.Remove(LeapYearPerson);
+                _context.LeapYearPerson.Remove(LeapYearPerson);
                 await _context.SaveChangesAsync();
             }
 

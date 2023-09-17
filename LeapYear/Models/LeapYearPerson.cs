@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
 namespace LeapYear.Models
 {
     public class LeapYearPerson
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Display(Name = "Rok urodzenia")]
@@ -13,14 +17,8 @@ namespace LeapYear.Models
         public int? Year { get; set; }
 
         [Display(Name = "Imie")]
-        [Required(ErrorMessage = "Pole {0} jest wymagane"),
-        StringLength(10, ErrorMessage = "{0} wartość nie może przekraczać {1} znaków. ")]
+        [StringLength(10, ErrorMessage = "{0} wartość nie może przekraczać {1} znaków. ")]
         public String? Name { get; set; }
-
-        [Display(Name = "Nazwisko")]
-        [Required(ErrorMessage = "Pole {0} jest wymagane"),
-        StringLength(10, ErrorMessage = "{0} wartość nie może przekraczać {1} znaków. ")]
-        public String? LastName { get; set; }
 
         [Display(Name = "Czas utworzenia")]
         public DateTime? TimeOfWrite { get; set; }
@@ -39,5 +37,9 @@ namespace LeapYear.Models
             else
                 return "nieprzestępny";
         }
+
+        public string? UserId { get; set; }
+
+        public IdentityUser? User { get; set; }
     }
 }

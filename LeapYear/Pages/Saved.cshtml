@@ -1,0 +1,15 @@
+﻿@page
+@model LeapYear.Pages.SavedModel
+@{
+}
+
+@foreach (var information in @Model.InformationsAboutLeapYear)
+{
+    <p>@information</p>
+}
+@if(@Model.InformationsAboutLeapYear.Count == 0)
+{
+    <p>
+        Daj nam swoje dane <a href="/">o tu</a> a pojawią się tutaj!
+    </p>
+}

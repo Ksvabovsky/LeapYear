@@ -1,0 +1,12 @@
+﻿@page
+@model LeapYear.Pages.SearchHistoryModel
+@{
+}
+
+@if (Model.LeapYearPeople != null)
+{
+    @foreach (var item in Model.LeapYearPeople)
+    {
+                <p>@Html.DisplayFor(modelItem => item.Outcome)</p>
+    }
+}

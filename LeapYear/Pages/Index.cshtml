@@ -6,5 +6,37 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form method="post">
+        <label asp-for="LeapYear.Year"></label>
+        <br />
+        <input type="number" asp-for="LeapYear.Year" /><br />
+        <label asp-for="LeapYear.Name"></label>
+        <br />
+        <input type="text" asp-for="LeapYear.Name" /><br />
+        <button type="submit" class="btn btn-primary">Zatwierdź</button>
+        <div id="alert" class="alert alert-danger" role="alert">
+            <span asp-validation-for="LeapYear.Name" class="alert alert-danger text-danger"></span>
+            <span asp-validation-for="LeapYear.Year" class="alert alert-danger text-danger"></span>
+        </div>
+        <div id="success-message" class="alert alert-success" role="alert">
+            <span>@Model.SuccessMessage</span>
+        </div>
+    </form>
+    <br /><br />
+    @if (Model.LeapYearPeople != null)
+        @foreach (var item in Model.LeapYearPeople)
+        {
+            <p>
+                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Year)
+            </p>
+        }
 </div>
+<script>
+    let alertMessege = document.getElementById("alert");
+    let successMessage = document.getElementById("success-message");
+    if (alertMessege.innerText == "")
+        alertMessege.style.display = "none";
+    if (successMessage.innerText == "")
+        successMessage.style.display = "none";
+</script>

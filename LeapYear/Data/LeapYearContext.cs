@@ -10,6 +10,6 @@ namespace LeapYear.Data
             : base(options)
         {
         }
-        public DbSet<LeapYearPerson> Person { get; set; }
+        public DbSet<LeapYearPerson> LeapYearPerson { get; set; }
     }
 }

@@ -23,12 +23,12 @@ namespace LeapYear.Pages.Person
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Person == null)
+            if (id == null || _context.LeapYearPerson == null)
             {
                 return NotFound();
             }
 
-            var leapyearperson = await _context.Person.FirstOrDefaultAsync(m => m.Id == id);
+            var leapyearperson = await _context.LeapYearPerson.FirstOrDefaultAsync(m => m.Id == id);
             if (leapyearperson == null)
             {
                 return NotFound();

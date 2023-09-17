@@ -1,6 +1,6 @@
 ﻿@page
 @model LeapYear.Pages.Person.IndexModel
-
+@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Index";
 }
@@ -20,13 +20,13 @@
                 @Html.DisplayNameFor(model => model.LeapYearPerson[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LeapYearPerson[0].LastName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.LeapYearPerson[0].TimeOfWrite)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LeapYearPerson[0].Outcome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeapYearPerson[0].UserId)
             </th>
             <th></th>
         </tr>
@@ -41,20 +41,61 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.TimeOfWrite)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Outcome)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Model.GetUserName(item.UserId)
+            </td>
+            <td>
+                @if (UserManager.GetUserId(User) == item.UserId && item.UserId != null)
+                {
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                }
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @if (Model.LeapYearPerson.HasPreviousPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-page="./Index" asp-route-pageIndex="1">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-page="./Index" asp-route-pageIndex="@(Model.LeapYearPerson.PageIndex - 1)">Previous</a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= Model.LeapYearPerson.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.LeapYearPerson.PageIndex ? "active" : "")">
+                        <a class="page-link" asp-page="./Index" asp-route-pageIndex="@i">@i</a>
+                    </li>
+                }
+
+                @if (Model.LeapYearPerson.HasNextPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-page="./Index" asp-route-pageIndex="@(Model.LeapYearPerson.PageIndex + 1)">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-page="./Index" asp-route-pageIndex="@Model.LeapYearPerson.TotalPages">Last</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>

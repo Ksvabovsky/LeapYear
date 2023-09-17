@@ -31,12 +31,12 @@ namespace LeapYear.Pages.Person
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Person == null || LeapYearPerson == null)
+          if (!ModelState.IsValid || _context.LeapYearPerson == null || LeapYearPerson == null)
             {
                 return Page();
             }
 
-            _context.Person.Add(LeapYearPerson);
+            _context.LeapYearPerson.Add(LeapYearPerson);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
