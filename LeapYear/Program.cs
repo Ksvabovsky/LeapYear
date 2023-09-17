@@ -1,8 +1,16 @@
 using LeapYear.Data;
+using LeapYear.Interfaces;
+using LeapYear.Repositories;
+using LeapYear.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+
+builder.Services.AddTransient<ILeapYearRepository, LeapYearRepository>();
+builder.Services.AddTransient<ILeapYearService, LeapYearService>();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
