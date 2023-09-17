@@ -1,0 +1,49 @@
+﻿@page
+@model LeapYear.Pages.Person.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LeapYearPerson</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeapYearPerson.Year)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeapYearPerson.Year)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeapYearPerson.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeapYearPerson.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeapYearPerson.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeapYearPerson.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeapYearPerson.TimeOfWrite)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeapYearPerson.TimeOfWrite)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LeapYearPerson.Outcome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LeapYearPerson.Outcome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.LeapYearPerson?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
